@@ -28,7 +28,11 @@ key: page-about
 
 ## About Me
 
-I'm Eojin Lee, a Frontend Developer.
+I'm Eojin Lee.
+
+I recently started learning frontend development at Woowahan Tech Course (8th cohort). It's a whole new world for me, and I'm excited to dive in.
+
+Previously, I was a student studying Materials Science and Engineering.
 
 ## Links
 
