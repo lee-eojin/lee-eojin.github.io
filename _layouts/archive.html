@@ -1,40 +1,22 @@
 ---
 layout: page
 titles:
-  # @start locale config
-  en      : &EN       Archive
-  en-GB   : *EN
-  en-US   : *EN
-  en-CA   : *EN
-  en-AU   : *EN
-  zh-Hans : &ZH_HANS  归档
-  zh      : *ZH_HANS
-  zh-CN   : *ZH_HANS
-  zh-SG   : *ZH_HANS
-  zh-Hant : &ZH_HANT  歸檔
-  zh-TW   : *ZH_HANT
-  zh-HK   : *ZH_HANT
-  ko      : &KO       아카이브
-  ko-KR   : *KO
-  fr      : &FR       Archives
-  fr-BE   : *FR
-  fr-CA   : *FR
-  fr-CH   : *FR
-  fr-FR   : *FR
-  fr-LU   : *FR
-  tr      : &TR       Arşivdekiler
-  # @end locale config
+  en: All Posts
+  zh: 归档
+  zh-Hans: 归档
+  zh-Hant: 歸檔
+show_title: false
 ---
-
-<div class="layout--archive js-all">
-  {%- include tags.html -%}
-  <div class="js-result layout--archive__result d-none">
-    {%- include article-list.html articles=site.posts type='brief' show_info=true reverse=true group_by='year' -%}
+<div class="layout--all js-all">
+  <div class="search-box js-search-box">
+    <div class="icon-search">{%- include svg/icon/search.svg -%}</div>
+    <input type="text" />
+    <div class="button icon-clear">{%- include svg/icon/clear.svg -%}</div>
   </div>
+  {%- include tags.html -%}
+  <div class="js-result layout--all__result"></div>
 </div>
 
 <script>
   {%- include scripts/archieve.js -%}
 </script>
-
-{{ content }}

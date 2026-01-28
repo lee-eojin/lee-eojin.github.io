@@ -16,41 +16,30 @@
 
 ## => Site Settings
 ##############################
-text_skin: default
-highlight_theme: default
-url     : https://lee-eojin.github.io
-baseurl :
-title   : Eojin Lee's Blog
+
+environemtn: "product"
+
+text_color_theme: "default" # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+url: https://lee-eojin.github.io
+baseurl:
+title:  "Eojin Lee's Blog"
 description: >
   Frontend Developer
 
 
 ## => Language and Timezone
 ##############################
-lang: en
-timezone: Asia/Seoul
+lang: "en" # the language of your site, "en" (default, English), "zh"(简体中文), "zh-Hans"(简体中文), "zh-Hant"(繁體中文)
+timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
 
 
 ## => Author and Social
 ##############################
 author:
-  type      : person
-  name      : Eojin Lee
-  url       : https://github.com/lee-eojin
-  avatar    :
-  bio       : Frontend Developer
-  email     :
-  facebook  :
-  twitter   :
-  weibo     :
-  googleplus:
-  telegram  :
-  medium    :
-  zhihu     :
-  douban    :
-  linkedin  :
-  github    : lee-eojin
-  npm       :
+  name: Eojin Lee
+  email:
+  github: lee-eojin
+  linkedin:
 
 
 ## => GitHub Repository (if the site is hosted by GitHub)
@@ -58,46 +47,40 @@ author:
 repository: lee-eojin/lee-eojin.github.io
 repository_tree: main
 
+future: true
 
 ## => Paths
 ##############################
 paths:
-  root    : # title link url, "/" (default)
-  home    : # home layout url, "/" (default)
-  archive : # "/archive.html" (default)
-  rss     : # "/feed.xml" (default)
+  base: /
 
 
 ## => Post
 ##############################
 ## excerpt
 excerpt_separator: <!--more-->
-excerpt_type: html
-
-## license
-license: CC-BY-NC-4.0 # "CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0"
+excerpt_type: html # text (default), html
 
 ## TOC
 toc:
-  selectors: "h1,h2,h3,h4"
+  selectors:  "h1,h2,h3,h4"
 
+## Markdown Enhancements
 
-## => Markdown Enhancements
-##############################
-## Mathjax
+# Mathjax
 mathjax: true
-mathjax_autoNumber: true
+mathjax_autoNumber:  true
 
-## Mermaid
+# Mermaid
 mermaid: # false (default), true
 
-## Chart
+# Chart
 chart: # false (default), true
 
 
 ## => Paginate
 ##############################
-paginate: 6
+paginate:  6
 paginate_path: /page:num # don't change this unless for special need
 
 
@@ -106,87 +89,55 @@ paginate_path: /page:num # don't change this unless for special need
 sources: # bootcdn (default), unpkg
 
 
-## => Sharing
-##############################
-sharing:
-  provider: false # false (default), "addtoany", "addthis", "custom"
-
-  ## AddThis
-  addthis:
-    id: # AddThis pubid, e.g. ra-5xxxxxxxxxxx
-
-
 ## => Comments
 ##############################
-comments:
-  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
+## Disqus (disabled - using utterances instead)
+# disqus:
+#   shortname: "ita9naiwa"
 
-  ## Disqus
-  disqus:
-    shortname: # the Disqus shortname for the site
+## Utterances
+utterances:
+  repo: "lee-eojin/lee-eojin.github.io"
+  issue_term: "pathname"
+  label: "comment"
+  theme: "github-light"
 
-  ## Gitalk
-  # please refer to https://github.com/gitalk/gitalk for more info.
-  gitalk:
-    clientID    : # GitHub Application Client ID
-    clientSecret: # GitHub Application Client Secret
-    repository  : # GitHub repo
-    owner       : # GitHub repo owner
-    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      # - your GitHub Id
-
-  ## Valine
-  # please refer to https://valine.js.org/en/ for more info.
-  valine:
-    app_id      : # LeanCloud App id
-    app_key     : # LeanCloud App key
-    placeholder : # Prompt information
-    visitor     : # false (default)
-    meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
+## Gitalk
+# please refer to https://github.com/gitalk/gitalk for more info.
+gitalk:
+  clientID: # GitHub Application Client ID
+  clientSecret: # GitHub Application Client Secret
+  repository: # GitHub repo
+  owner: # GitHub repo owner
+  admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+    # - your GitHub Id
 
 
 ## => Pageview
 ##############################
-pageview:
-  provider: false # false (default), "leancloud", "custom"
-
-  ## Leancloud
-  leancloud:
-    app_id    : # LeanCloud App id
-    app_key   : # LeanCloud App key
-    app_class : # LeanCloud App class
-
-
-## => Search
-##############################
-search:
-  provider: default # "default" (default), false, "google", "custom"
-
-  ## Google Custom Search Engine
-  google:
-    custom_search_engine_id: # Google Custom Search Engine ID
+## Leancloud
+leancloud:
+  app_id: # LeanCloud App id
+  app_key: # LeanCloud App key
+  app_class: # LeanCloud App class
 
 
 ## => Analytics
 ##############################
-analytics:
-  provider: false # false (default), "google", "custom"
-
-  ## Google Analytics
-  google:
-    tracking_id : # Google Analytics id for the site
-    anonymize_ip: false # Anonymize IP tracking for Analytics
+## Google Analytics
+ga_tracking_id:
+ga_anonymize_ip: false
 
 
 ## => Build
 ##############################
-markdown    : kramdown
-highlighter : rouge
-permalink   : date
+markdown: kramdown
+highlighter: rouge
+permalink: date
 
 exclude:
   - CHANGELOG.md
-  - HOW_TO_RELEASE.md
+  - CHECKLIST.md
   - Gemfile
   - Gemfile.lock
   - LICENSE
@@ -220,3 +171,6 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+  - jekyll-gist
+  - jekyll-seo-tag
+gems: [jekyll-paginate]

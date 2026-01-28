@@ -1,15 +1,13 @@
-{%- include snippets/assign.html target=site.data.variables.default.pageview source0=page.pageview -%}
+{%- assign __source = page.pageview -%}
+{%- assign __target = site.data.variables.default.pageview -%}
+{%- include snippets/assign.html -%}
 {%- assign _pageview = __return -%}
 
 
 {%- if page.layout == "home" -%}
 
   {%- if jekyll.environment != "development" -%}
-    {%- if site.pageview.provider == 'leancloud' -%}
-      {%- include pageview-providers/leancloud/home.html -%}
-    {%- elsif site.pageview.provider == 'custom' -%}
-      {%- include pageview-providers/custom/home.html -%}
-    {%- endif -%}
+    {%- include pageview-providers/leancloud/home.html -%}
   {%- endif -%}
 
 
@@ -18,11 +16,7 @@
 
     {%- if jekyll.environment != "development" and
       jekyll.environment != "beta" -%}
-      {%- if site.pageview.provider == 'leancloud' -%}
-        {%- include pageview-providers/leancloud/post.html -%}
-      {%- elsif site.pageview.provider == 'custom' -%}
-        {%- include pageview-providers/custom/post.html -%}
-      {%- endif -%}
+      {%- include pageview-providers/leancloud/post.html -%}
     {%- endif -%}
 
   {%- endif -%}

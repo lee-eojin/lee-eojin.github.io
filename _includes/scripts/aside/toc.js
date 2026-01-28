@@ -4,7 +4,7 @@
   window.Lazyload.js(SOURCES.jquery, function() {
     var $window = $(window);
     var $articleContent = $('.js-article-content');
-    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-2');
     var toc;
     var tocDisabled = false;
     var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
@@ -16,13 +16,15 @@
 
     tocDisabled = disabled();
 
-    toc = $tocRoot.toc({
-      selectors: TOC_SELECTOR,
-      container: $articleContent,
-      scrollTarget: hasSidebar ? '.js-page-main' : null,
-      scroller: hasSidebar ? '.js-page-main' : null,
-      disabled: tocDisabled
-    });
+    setTimeout(function() {
+      toc = $tocRoot.toc({
+        selectors: TOC_SELECTOR,
+        container: $articleContent,
+        scrollTarget: hasSidebar ? '.js-page-main' : null,
+        scroller: hasSidebar ? '.js-page-main' : null,
+        disabled: tocDisabled
+      });
+    }, 1000);
 
     $window.on('resize', window.throttle(function() {
       tocDisabled = disabled();

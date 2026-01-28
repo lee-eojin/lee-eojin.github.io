@@ -1,33 +1,26 @@
 @mixin plain() {
   &,
   &:link,
-  &:visited {
+  &:visited{
     @content;
   }
 }
 
 @mixin hover() {
-  .root[data-is-touch="false"] &:hover {
+  &:hover {
     @content;
   }
 }
 
 @mixin active() {
-  .root[data-is-touch] &.active,
-  .root[data-is-touch] &:active {
+  &.active,
+  &:active {
     @content;
   }
 }
 
 @mixin focus() {
-  .root[data-is-touch] &.focus {
-    @content;
-  }
-}
-
-@mixin disabled() {
-  &.disabled,
-  &:disabled {
+  &.focus {
     @content;
   }
 }

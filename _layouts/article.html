@@ -1,26 +1,56 @@
 ---
 layout: page
-type: article
+show_title: false
+sidebar:
+  nav: docs-en
+aside:
+  toc: true
+comment: true
 ---
 
-{%- include snippets/assign.html
-  target = site.data.variables.default.page.sharing
-  source0=layout.sharing source1=page.sharing -%}
-{%- assign _sharing = __return -%}
-
 <div class="layout--article">
-  {%- include article/top/custom.html -%}
 
-  <div class="article__content" itemprop="articleBody">{{ content }}</div>
+  <div class="article-content" itemprop="articleBody">{{ content }}</div>
 
-  {%- if _sharing -%}
-    <section class="article__sharing d-print-none">{%- include sharing.html -%}</section>
+  <footer class="article-footer">
+    {%- if page.modify_date -%}
+      {%- assign __locale = site.data.locale.ARTICLE_DATE_FORMAT -%}
+      {%- include snippets/locale-to-string.html -%}
+      {%- assign date_format = __return -%}
+      {%- assign __locale = site.data.locale.LAST_UPDATED -%}
+      {%- include snippets/locale-to-string.html -%}
+      <span>{{ __return }}
+        <time datetime="{{ page.modify_date | date_to_xmlschema }}" itemprop="dateModified">{{ page.modify_date | date: date_format }}</time>
+      </span>
+    {%- else -%}
+      <meta itemprop="dateModified" content="{{ page.date | date_to_xmlschema }}">
+    {%- endif -%}
+
+    {%- if page.license -%}
+      <div class="article-license">{%- include license.html -%}</div>
+    {%- endif -%}
+  </footer>
+
+  {%- if page.next or page.previous -%}
+    <div class="article-previous-next clearfix">
+    {%- if page.next -%}
+      {%- assign __path = page.next.url -%}
+      {%- include snippets/prepend-baseurl.html -%}
+      {%- assign href = __return -%}
+      {%- assign __locale = site.data.locale.PREVIOUS -%}
+      {%- include snippets/locale-to-string.html -%}
+      <div class="article-previous"><span>{{ __return }}</span><a href="{{ href }}">{{ page.next.title }}</a></div>
+    {%- endif -%}
+    {%- if page.previous -%}
+      {%- assign __path = page.previous.url -%}
+      {%- include snippets/prepend-baseurl.html -%}
+      {%- assign href = __return -%}
+      {%- assign __locale = site.data.locale.NEXT -%}
+      {%- include snippets/locale-to-string.html -%}
+      <div class="article-next"><span>{{ __return }}</span><a href="{{ href }}">{{ page.previous.title }}</a></div>
+    {%- endif -%}
+    </div>
   {%- endif -%}
-
-  <div class="d-print-none">
-    {%- include article-footer.html -%}
-    {%- include article-section-navigator.html -%}
-  </div>
 
 </div>
 
