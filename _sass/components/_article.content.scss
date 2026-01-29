@@ -1,4 +1,5 @@
 .article-content {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   word-wrap: break-word;
   line-height: map-get($base, line-height-lg);
   @include block-elements() {

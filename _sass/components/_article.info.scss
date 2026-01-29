@@ -1,5 +1,6 @@
 .article-info {
   font-size: map-get($base, font-size-sm);
+  @include clearfix();
   .article-info__left-col {
     float: left;
     @include media-breakpoint-down(sm) {
