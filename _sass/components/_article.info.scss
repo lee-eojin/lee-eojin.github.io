@@ -1,6 +1,10 @@
 .article-info {
   font-size: map-get($base, font-size-sm);
-  @include clearfix();
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
   .article-info__left-col {
     float: left;
     @include media-breakpoint-down(sm) {
