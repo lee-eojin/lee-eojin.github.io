@@ -58,7 +58,7 @@ Rust는 매년 새 기능이 추가되는데, 가끔 breaking change가 필요�
 - 하지만 다른 edition 코드끼리 서로 의존 가능 (!)
 - compiler가 내부적으로 호환성 처리함
 
-이게 진짜 좋은 점은, 10년 된 Rust 코드도 최신 compiler로 빌드 가능하면서, 새 프로젝트는 최신 문법 쓸 수 있다는 것.
+진짜 좋은 점은, 10년 된 Rust 코드도 최신 compiler로 빌드 가능하면서, 새 프로젝트는 최신 문법 쓸 수 있다는 것.
 
 **[dependencies]는 언제 fetch되나?**
 
@@ -79,7 +79,7 @@ cargo check              # type check만 (binary 안 만듦)
 
 **debug vs release 차이**
 
-처음에 "왜 mode가 두 개지?" 싶었는데, 실제로 성능 차이가 큼.
+이게 실제로 성능 차이가 큼.
 
 debug mode:
 - 최적화 없음
@@ -95,7 +95,7 @@ release mode:
 
 ## Random Number Generation
 
-Rust stdlib에 random이 없음. 처음엔 "왜 이런 기본적인 것도 없지?" 싶었는데, 이유가 있음.
+Rust stdlib에 random이 없음. 요게 나름 이유가 있음.
 
 - stdlib을 최대한 minimal하게 유지하는 철학
 - random의 use case가 다양함 (게임용 빠른 RNG vs 암호화용 secure RNG)
@@ -138,7 +138,7 @@ fn generate_number() -> Vec<u8> {
 
 `SliceRandom`은 trait. slice에 `shuffle()` 메서드를 추가해줌.
 
-여기서 Rust의 재밌는 점 하나. trait을 scope에 가져와야 해당 메서드를 쓸 수 있음. 이게 처음엔 귀찮았는데, 생각해보니까:
+여기서 Rust의 재밌는 점 하나. trait을 scope에 가져와야 해당 메서드를 쓸 수 있음. 생각해보니까:
 - 어떤 메서드가 어디서 온 건지 명확함
 - 이름 충돌 방지
 
@@ -196,7 +196,7 @@ Signed:    i8    i16    i32    i64    i128    isize
 Unsigned:  u8    u16    u32    u64    u128    usize
 ```
 
-왜 이렇게 세분화했을까? 시스템 프로그래밍 언어라서.
+왜 이렇게 세분화했을까? 시스템 프로그래밍 언어라서 ㅇㅇ
 
 - 메모리 사용량 정확히 제어 가능
 - 특정 크기가 필요한 경우 (network protocol, file format 등)
@@ -221,7 +221,7 @@ x.saturating_add(1);  // 255 (최대값에서 멈춤)
 x.checked_add(1);     // None (Option 반환)
 ```
 
-처음엔 "귀찮게 왜 이래" 싶었는데, integer overflow 버그가 실제로 많이 터지는 걸 생각하면 합리적.
+음 integer overflow 버그가 실제로 많이 터지는 걸 생각하면 합리적.
 
 ### let과 mut
 
@@ -241,7 +241,7 @@ y = 6;        // ok
 2. **concurrency** - immutable이면 여러 thread에서 동시 접근해도 안전
 3. **optimization** - compiler가 값이 안 바뀐다는 걸 알면 최적화 기회 늘어남
 
-처음엔 귀찮았는데, 실제로 코드 짜다 보니까 "이거 실수로 바꾼 거 아닌가?" 하는 버그가 줄어듦.
+실제로 코드 짜다 보니까 "이거 실수로 바꾼 거 아닌가?" 하는 버그가 줄어듦.
 
 **shadowing은 다름**
 
@@ -271,7 +271,7 @@ let result: Vec<i32> = (1..1000000)
     .collect();
 ```
 
-이거 중간에 100만개짜리 Vec 안 만듦. 필요한 것만 그때그때 계산. memory efficient하고 빠름.
+중간에 100만개짜리 Vec 안 만듦. 필요한 것만 그때그때 계산. memory efficient하고 빠름.
 
 ## User Input
 
@@ -302,7 +302,7 @@ print!("숫자를 입력하세요: ");  // 아직 화면에 안 나올 수 있�
 io::stdout().flush().unwrap();  // 이제 나옴
 ```
 
-이거 처음에 몰라서 프롬프트가 안 뜨는 줄 알았음.
+이거 처음에 몰라서 프롬프트가 안 뜨는 줄 알았음 ㅋㅋ
 
 ### Result와 Error Handling
 
@@ -341,7 +341,7 @@ fn foo() -> Result<i32, Error> {
 
 `?` operator가 진짜 편함. error propagation을 한 글자로.
 
-처음엔 "exception이 왜 없어?" 싶었는데, 써보니까 Result가 더 명확함. 어떤 함수가 에러를 낼 수 있는지 signature만 봐도 앎.
+exception이 왜 없냐 싶다가도 써보니까 Result가 더 명확함. 어떤 함수가 에러를 낼 수 있는지 signature만 봐도 앎.
 
 ### Ownership과 Borrowing
 
@@ -484,6 +484,7 @@ impl Game {
 - struct에 method를 여러 impl block으로 나눠서 정의 가능
 - trait impl도 별도 impl block
 - 코드 구조화에 유연함
+- 내가 몇 달 동안 해본게 이런거라서...
 
 **self의 종류**
 
@@ -548,7 +549,7 @@ pub struct Game { ... }      // struct는 public
 pub fn new() -> Self { ... } // method도 pub 필요
 ```
 
-이것도 처음엔 귀찮았는데, 생각해보면 좋은 default. 의도적으로 공개하는 것만 공개.
+이것도 생각해보면 좋은 default. 의도적으로 공개하는 것만 공개.
 
 ### crate, super, self
 
