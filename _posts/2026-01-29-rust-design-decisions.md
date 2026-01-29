@@ -672,7 +672,7 @@ Rust 공부하다가 처음 적용해본거긴한데, compiler가 strict한 게 
 
 ## References
 
-- <a href="https://doc.rust-lang.org/book/" target="_blank">The Rust Programming Language</a> - 공식 book. 이거 진짜 잘 되어있음
+- <a href="https://doc.rust-lang.org/book/" target="_blank">The Rust Programming Language</a> - 공식 book
 - <a href="https://doc.rust-lang.org/rust-by-example/" target="_blank">Rust by Example</a> - 예제로 배우기
 - <a href="https://doc.rust-lang.org/std/" target="_blank">Standard Library Docs</a>
 - <a href="https://cheats.rs/" target="_blank">Rust Cheat Sheet</a>
