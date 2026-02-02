@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "분명 바꿨는데... 왜 state가 안 바뀔까"
+title: "분명 바꿨는데 왜 state가 안 바뀔까"
 category: "TIL"
 tag: "React"
 comment: true
