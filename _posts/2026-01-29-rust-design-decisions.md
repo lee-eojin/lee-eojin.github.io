@@ -9,7 +9,9 @@ key: 20260129
 
 첫 글이 Rust가 될 줄이야... 일단 Rust를 한 2주정도 개념을 공부해보고 처음 써봤는데, 다른 언어랑 다른 규칙들이 많음. 뭐 근데 알고 보니 다 이유가 있었긴 한듯. <a href="https://github.com/lee-eojin/crab-szn/tree/main/baseball" target="_blank">숫자야구</a> 만들면서 배운 것들 + 왜 Rust가 이런 design decision을 했는지 정리.
 
-(갑자기 Rust를 왜 해봤냐고? 그냥 어차피 2월 말까지 자유야 나는 ㅋ)
+(갑자기 Rust를 왜 해봤냐고? 어차피 2월 말까지 자유야)
+
+<!--more-->
 
 ## Rust가 해결하려는 문제
 
