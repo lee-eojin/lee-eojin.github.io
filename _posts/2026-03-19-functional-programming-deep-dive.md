@@ -14,6 +14,8 @@ key: 20260319
 
 <!--more-->
 
+나는 이런 본인만의 강점을 만들 수 있는 시간을 제공해준 우테코에게 다시 한번 감사하다고 적으면서 글을 시작하고싶다.
+
 > [스터디 레포(PR이 핵심임)](https://github.com/woowacourse-study/2026-fp-deep-dive)
 
 문제는, 스터디는 정말 "스터디답게" 각자 속한 원정대에서 딥하게 올인해야하는데, 자꾸 시스템적으로 홍보와 발표에 초점을 두게끔 유도하는 느낌이 난달까.
@@ -120,6 +122,28 @@ function makeReservation(roomId, date, startHour, duration, attendees) {
 
 `calculateFee`, `calculateEarnedPoints`는 아무 걱정 없이 테스트할 수 있다. 액션인 `makeReservation`은 여전히 주의가 필요하지만, **신뢰할 수 있는 코드(계산)가 늘어나고 다루기 어려운 코드(액션)가 줄어든다.**
 
+## 암묵적 입력과 출력
+
+함수를 계산으로 만드는 가장 확실한 방법은 **암묵적 입출력을 명시적으로 바꾸는 것**이다.
+
+```js
+// 암묵적 입력 — gradeConfig를 전역에서 읽음
+function getGrade(hours) {
+  if (hours >= gradeConfig.master.minHours) return "master";
+  // ...
+}
+
+// 명시적 입력 — 인자로 받음
+function getGrade(hours, gradeConfig) {
+  if (hours >= gradeConfig.master.minHours) return "master";
+  // ...
+}
+```
+
+전역에서 읽으면 `gradeConfig`가 바뀔 때 결과가 달라질 수 있다. 인자로 받으면 같은 입력에 항상 같은 출력이 보장된다. 테스트할 때도 원하는 `gradeConfig`를 넣어볼 수 있어서 편하다.
+
+이게 별거 아닌 것 같은데, 스터디에서 세 팀이 같은 코드를 리팩토링했더니 이 부분에서 가장 많은 논의가 나왔다. "gradeConfig가 사실상 상수인데 굳이 인자로 받아야 하나?" vs "원칙적으로 명시적이 낫다" 이런 논쟁. 결론은 팀마다 달랐는데, 이런 고민 자체가 함수형 사고의 핵심이라고 느꼈다.
+
 ## 불변성과 카피-온-라이트
 
 함수형에서 또 하나 중요한 게 불변성이다. 원본 데이터를 절대 안 건드린다. 바꿀 일이 있으면 복사본을 만들어서 복사본을 수정한다.
@@ -164,27 +188,6 @@ Layer 1 (JS 문법)         Array.filter, spread 연산자, for, ...
 
 이 구조가 왜 좋냐면, 아래 계층 함수는 위를 모른다. `findById`는 자기가 룸을 찾는 데 쓰이는지 예약을 찾는 데 쓰이는지 모른다. `Array.filter`는 `filterByKey`가 자기를 쓰는지도 모른다. 그래서 안심하고 재사용할 수 있다. 변경이 필요할 때도 영향 범위가 위에서 아래로만 흐르니까 명확하다.
 
-## 암묵적 입력과 출력
-
-함수를 계산으로 만드는 가장 확실한 방법은 **암묵적 입출력을 명시적으로 바꾸는 것**이다.
-
-```js
-// 암묵적 입력 — gradeConfig를 전역에서 읽음
-function getGrade(hours) {
-  if (hours >= gradeConfig.master.minHours) return "master";
-  // ...
-}
-
-// 명시적 입력 — 인자로 받음
-function getGrade(hours, gradeConfig) {
-  if (hours >= gradeConfig.master.minHours) return "master";
-  // ...
-}
-```
-
-전역에서 읽으면 `gradeConfig`가 바뀔 때 결과가 달라질 수 있다. 인자로 받으면 같은 입력에 항상 같은 출력이 보장된다. 테스트할 때도 원하는 `gradeConfig`를 넣어볼 수 있어서 편하다.
-
-이게 별거 아닌 것 같은데, 스터디에서 세 팀이 같은 코드를 리팩토링했더니 이 부분에서 가장 많은 논의가 나왔다. "gradeConfig가 사실상 상수인데 굳이 인자로 받아야 하나?" vs "원칙적으로 명시적이 낫다" 이런 논쟁. 결론은 팀마다 달랐는데, 이런 고민 자체가 함수형 사고의 핵심이라고 느꼈다.
 
 ## 마무리
 
